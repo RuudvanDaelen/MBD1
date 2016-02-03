@@ -94,7 +94,9 @@ Config.xml file:
   </platform>
 </widget>
 
-No Plugins Currently Installed
+Plugins: 
+
+cordova-plugin-splashscreen
 
 No Platforms Currently Installed
 
