@@ -1,3 +1,9 @@
+Node version: v4.2.3
+
+Cordova version: 6.0.0
+
+Config.xml file: 
+
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.myfirstapp.rdaelen" version="1.0.0">
   <name>MyFirstApp</name>
   <description>Dit is mijn eerste app met phonegap</description>
@@ -87,3 +93,8 @@
     <allow-intent href="itms-apps:*"/>
   </platform>
 </widget>
+
+No Plugins Currently Installed
+
+No Platforms Currently Installed
+
