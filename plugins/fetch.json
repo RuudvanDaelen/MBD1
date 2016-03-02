@@ -1,8 +1,8 @@
 {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-whitelist@1"
+            "id": "cordova-plugin-splashscreen@~3.1.0"
         },
         "is_top_level": true,
         "variables": {}
