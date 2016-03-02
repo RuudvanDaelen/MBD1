@@ -1,6 +1,6 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.myfirstapp.rdaelen" version="1.0.0">
-  <name>MyFirstApp</name>
-  <description>Dit is mijn eerste app met phonegap</description>
+  <name>Pokedex</name>
+  <description>Mobile Development 1 - Pokedex</description>
   <author email="rvdaelen@hotmail.com">Ruud van Daelen</author>
   <content src="index.html"/>
 
