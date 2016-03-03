@@ -30,7 +30,7 @@
 
         <!--Eigen Stylesheet en javascript file-->
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-        <script type="text/javascript" src="js/test.js"></script>
+        <script type="text/javascript" src="js/PokeApi.js"></script>
 
         <!--Jquery en jquery mobile files-->
         <script type="text/javascript" src="js/jquery-2.2.1.js"></script>
@@ -50,13 +50,13 @@
                 </div>-->
 
                 <!--Searchbar-->
-                <input type="search" name="search" id="search-basic" value="" onchange="alertSearch()" />
+                <input type="search" name="search" id="searchbar" value="" onchange="search()" />
                 <!--<button data-role="button" onclick="addPokemonToList()">Voeg item aan list toe</button>-->
                 <!--List-->
                 <ul data-role="listview" data-inset="true" id="pokemon-list">
                     <!--<li>
                         <a href="#">
-                            <img src="chrome.png">
+                            <img src="http://www.pokeapi.co/media/img/15.png">
                             <h2>Pokemon naam</h2>
                             <p>#nummer</p>
                         </a>
@@ -74,7 +74,9 @@
             </div>
         <!--</div>-->
         <script type="text/javascript">
-            createPokemonList();
+            $(document).ready(function(){
+                createPokemonList();
+            });
         </script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.phonegap.myfirstapp.rdaelen;
+package nl.avans.mbd1.2060492;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
