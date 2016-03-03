@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.myfirstapp.rdaelen" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-intent href="market:*" />
+    <name>Pokedex</name>
+    <description>Mobile Development 1 - Pokedex</description>
+    <author email="rvdaelen@hotmail.com">Ruud van Daelen</author>
+    <content src="index.html" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <icon src="www/icon.png" />
+    <gap:splash src="www/splash.png" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+</widget>
