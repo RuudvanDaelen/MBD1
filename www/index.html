@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>My App</title>
+    <title>Pok&eacute;dex</title>
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="css/framework7.ios.min.css">
     <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/my-app.css">
+    <!-- Path to JQuery -->
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
   </head>
   <body>
     <!-- Status bar overlay for fullscreen mode-->
@@ -18,17 +20,10 @@
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
     
-    <!-- Left panel with reveal effect-->
+    <!-- Left panel with reveal effect---------------------------------------------------------------------------------------->
     <div class="panel panel-left panel-reveal">
       <div class="content-block">
         <p>Hier kan een menu komen met settings?</p>
-      </div>
-    </div>
-    
-    <!-- Right panel with cover effect-->
-    <div class="panel panel-right panel-cover">
-      <div class="content-block">
-        <p>Right panel content goes here</p>
       </div>
     </div>
     
@@ -43,10 +38,9 @@
             <div class="left">
                 <img src="img/pokedex/pokeball_red_30x30_white.png" />
             </div>
-            <div class="center sliding">Pokedex</div>
+            <div class="center sliding color-white">Pok&eacute;dex</div>
             <div class="right">
-              <!-- Right link contains only icon - additional "icon-only" class<a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>-->
-              RvD
+              <a href="#" class="link icon-only open-panel"> <i class="icon icon-bars color-white"></i></a>
             </div>
           </div>
         </div>
@@ -56,57 +50,27 @@
         <div class="pages navbar-through toolbar-through">
           <!-- Page, data-page contains page name-->
           <div data-page="index" class="page">
+              
+            <form style="background-color: #CB413E;"  class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+                <div class="searchbar-input">
+                    <input type="search" placeholder="Search">
+                    <a href="#" class="searchbar-clear"></a>
+                </div>
+                <a href="#" class="searchbar-cancel" style="color: white;">Cancel</a>
+            </form>
+               
+            <div class="searchbar-overlay"></div> 
+              
+              
+              
             <!-- Scrollable page content-->
             <div class="page-content">
-              
-                <div class="list-block media-list">
+                <div class="content-block searchbar-not-found">
+                    No results
+                </div>
+                <div id="pokemon-list" class="list-block media-list list-block-search searchbar-found">
                     <ul>
-                        <li>
-                            <a href="about.html" class="item-link item-content">
-                                <div class="item-media">
-                                    <img src="path/to/img.jpg">
-                                </div>
-                                <div class="item-inner">
-                                    <div class="item-title-row">
-                                        <div class="item-title">About</div>
-                                        <div class="item-after">Element label</div>
-                                    </div>
-                                    <div class="item-subtitle">Pokemon-nummer</div>
-                                    <div class="item-text">Pokemon-type</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services.html" class="item-link item-content">
-                                <div class="item-media">
-                                    <img src="path/to/img.jpg">
-                                </div>
-                                <div class="item-inner">
-                                    <div class="item-title-row">
-                                        <div class="item-title">Services</div>
-                                        <div class="item-after">Element label</div>
-                                    </div>
-                                    <div class="item-subtitle">Pokemon-nummer</div>
-                                    <div class="item-text">Pokemon-type</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="form.html" class="item-link item-content">
-                                <div class="item-media">
-                                    <img src="path/to/img.jpg">
-                                </div>
-                                <div class="item-inner">
-                                    <div class="item-title-row">
-                                        <div class="item-title">Form</div>
-                                        <div class="item-after">Element label</div>
-                                    </div>
-                                    <div class="item-subtitle">Pokemon-nummer</div>
-                                    <div class="item-text">Pokemon-type</div>
-                                </div>
-                            </a>
-                        </li>
-                        
+                        <!-- In my-app.js wordt dit gevuld -->
                     </ul>
                 </div>
               
@@ -155,7 +119,7 @@
         </div>
         <!-- Bottom Toolbar-->
         <div class="toolbar">
-          <div class="toolbar-inner"><a href="#" class="link">Link 1</a><a href="#" class="link">Link 2</a></div>
+          <div class="toolbar-inner"><a href="form.html" class="link color-white">Link 1</a><a href="detail.html" class="link color-white">Link 2</a></div>
         </div>
       </div>
     </div>
