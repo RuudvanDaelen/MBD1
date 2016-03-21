@@ -7,11 +7,11 @@ var $$ = Dom7;
 
 //Infinite scroll variables
 var loading = false;
-var lastIndex = $$('.list-block li').length;
-var maxItems = 40; //moet gezet worden met ajaxcall result.count (totaal aantal van pokemons)
-var itemsPerLoad = 20; //instellbaar met settings?
-var next = "http://pokeapi.co/api/v2/pokemon/?limit="+itemsPerLoad;
-
+var lastIndex = $$('.pokemon-list li').length; //Zal na infinite scroll hoger worden
+var maxItems = 811; //moet gezet worden met ajaxcall result.count (totaal aantal van pokemons)
+var itemsPerLoad = $('#pokemonsToLoad').val(); //instellbaar met settings
+$('#itemsPerLoad').text(itemsPerLoad);
+//var next = "http://pokeapi.co/api/v2/pokemon/?limit=20";//+itemsPerLoad; NIET MEER NODIG
 
 
 
@@ -23,11 +23,9 @@ var mainView = myApp.addView('.view-main', {
 
 
 //Wordt direct uitgevoerd wanneer my-app.js wordt geladen in de pagina
-loadPokemons(next);
-
+loadPokemons(itemsPerLoad, 0); //vanaf het begin
 
 //Infinite Scroll
-
 $$('.infinite-scroll').on('infinite', function() {
    if(loading) return;
    
@@ -43,15 +41,18 @@ $$('.infinite-scroll').on('infinite', function() {
         }
         
         //Laad de pokemons
-        loadPokemons(next);
+        loadPokemons(itemsPerLoad, lastIndex);
         
-        lastIndex = $$('pokemon-list li').length; 
+        lastIndex = $$('pokemon-list li').length;
    }, 1000);
 });
 
 
 //Pokemons laden
-function loadPokemons(url) {
+function loadPokemons(limit, offset) {
+    
+    var url = "http://pokeapi.co/api/v2/pokemon/?limit="+limit+"&offset="+offset;
+    
     $.ajax({url: url, success: function(result){
         //alert("Aantal pokemons: " + result.count + "\n" + result.next);
 
@@ -93,5 +94,13 @@ function loadPokemons(url) {
             
             $("#pokemon-list ul").append(html);
         });
+        
+        lastIndex = $("#pokemon-list li").length;
     }});
+}
+
+//ItemsToLoad setten
+function setItemsPerLoad(value) {
+    itemsPerLoad = value;
+    $('#itemsPerLoad').text(itemsPerLoad);
 }
