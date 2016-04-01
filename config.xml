@@ -15,6 +15,7 @@
     <preference name="SplashScreenDelay" value="5000" />
 
     <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
 
     <icon src="icon.png" />
     <gap:splash src="www/splash.png" />
