@@ -30,11 +30,18 @@
                 <div class="item-title label">Pokemons to load: <span id="itemsPerLoad"></span></div>
                 <div class="item-input">
                     <div class="range-slider">
-                        <input id="pokemonsToLoad" type="range" min="20" max="100" value="20" step="5" onchange="setItemsPerLoad(this.value);"/>
+                        <input ontouchend="saveSettings()" id="pokemonsToLoad" type="range" min="20" max="100" step="5"/>
                     </div>
                 </div>
             </div>
         </div>
+        <!--<div class="content-block">
+            <div class="item-inner">
+                <div class="item-input">
+                    <a href="#" class="button button-round button-fill" ontouchend="saveSettings()">Save</a>
+                </div>
+            </div>
+        </div>-->
     </div>
     
     <!-- Views-->
