@@ -4,37 +4,34 @@
     <description>Mobile Development 1 - Pokedex</description>
     <author email="rvdaelen@hotmail.com">Ruud van Daelen</author>
     <content src="index.html" />
-    
+
     <!--<preference name="permissions" value="none"/> Helemaal geen permissies-->
     <feature name="http://api.phonegap.com/1.0/network"/> <!--Network permissions-->
     <feature name="http://api.phonegap.com/1.0/geolocation"/> <!--Geolocation permissions-->
-    
-    
+
+
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="5000" />
-    
+
     <gap:plugin name="org.apache.cordova.geolocation" />
-    
+
     <icon src="icon.png" />
     <gap:splash src="www/splash.png" />
-    
-    <access origin="*" />
-    
-    <plugin name="cordova-plugin-whitelist" version="1" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
+
+    <access origin="*"/>
+    <plugin name="cordova-plugin-whitelist" version="1"/>
+    <allow-intent href="http://*/*"/>
+    <allow-intent href="https://*/*"/>
+    <allow-intent href="tel:*"/>
+    <allow-intent href="sms:*"/>
+    <allow-intent href="mailto:*"/>
+    <allow-intent href="geo:*"/>
     <platform name="android">
-        <allow-intent href="market:*" />
+        <allow-intent href="market:*"/>
     </platform>
-    <!--<platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-    </platform>-->
-    <engine name="android" spec="~5.1.1" />
-    <!--<engine name="ios" spec="~4.0.1" />-->
+    <platform name="ios">
+        <allow-intent href="itms:*"/>
+        <allow-intent href="itms-apps:*"/>
+    </platform>
 </widget>
