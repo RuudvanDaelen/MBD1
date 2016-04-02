@@ -18,7 +18,7 @@
     <gap:plugin name="org.apache.cordova.inappbrowser" />
 
     <icon src="icon.png" />
-    <gap:splash src="www/splash.png" />
+    <splash src="splash.png" />
 
     <access origin="*"/>
     <plugin name="cordova-plugin-whitelist" version="1"/>
