@@ -8,13 +8,20 @@ var $$ = Dom7;
 var storage = window.localStorage;
 
 if(storage.getItem('myPokemons') != null) {
-    //alert(storage.getItem('myPokemons'));
     var myPokemons = JSON.parse(storage.getItem('myPokemons'));
-    //alert(myPokemons);
 } else {
     var myPokemons = [];
 }
 
+if(storage.getItem('pokemonLat') != null && storage.getItem('pokemonLon') != null) {
+    var pokemonLat = storage.getItem('pokemonLat');
+    var pokemonLon = storage.getItem('pokemonLon');
+} else {
+    var pokemonLat = 51.6850521276255;
+    var pokemonLon = 5.124607672919635;
+}
+document.getElementById('pokemonLat').value = pokemonLat;
+document.getElementById('pokemonLon').value = pokemonLon;
 
 //Infinite scroll variables
 var loading         = false;
@@ -29,7 +36,8 @@ if(storage.getItem('itemsperload') != null) {
 
 
 $('#itemsPerLoad').text(itemsPerLoad);
-$('#pokemonsToLoad').value = itemsPerLoad;
+document.getElementById('pokemonsToLoad').value = itemsPerLoad;
+//$('#pokemonsToLoad').value = itemsPerLoad;
 
 //Locatie
 var maxDistanceToPokemon = 40; //Meters
@@ -76,14 +84,22 @@ loadPokemons(itemsPerLoad, 0); //vanaf het begin
 
 
 //ItemsToLoad setten
-function setItemsPerLoad(value) {
-    storage.setItem('itemsperload', ""+value); //Local storage goed zetten
-    itemsPerLoad = value;
+function setItemsPerLoad() {
+    storage.setItem('itemsperload', ""+$('#pokemonsToLoad').val()); //Local storage goed zetten
+    itemsPerLoad = $('#pokemonsToLoad').val();
     $('#itemsPerLoad').text(itemsPerLoad);
 }
 
+function setPokemonLatLon() {
+    pokemonLat = $('#pokemonLat').val();
+    pokemonLon = $('#pokemonLon').val();
+    storage.setItem('pokemonLat', ""+$('#pokemonLat').val())
+    storage.setItem('pokemonLon', ""+$('#pokemonLon').val())
+}
+
 function saveSettings() {
-    setItemsPerLoad($('#pokemonsToLoad').val());
+    setItemsPerLoad();
+    setPokemonLatLon();
 }
 
 function openExternalLink(url) {
@@ -161,8 +177,8 @@ function getPokemon(id) {
         });
         
         //Thuis
-        pokemon.latitude = 51.6850521276255;
-        pokemon.longitude = 5.124607672919635;
+        pokemon.latitude = pokemonLat;
+        pokemon.longitude = pokemonLon;
         
         //School
         //pokemon.latitude = 51.6884299;

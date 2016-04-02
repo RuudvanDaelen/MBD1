@@ -10,15 +10,15 @@
     <feature name="http://api.phonegap.com/1.0/geolocation"/> <!--Geolocation permissions-->
 
 
-    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <!--<gap:plugin name="org.apache.cordova.splashscreen" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="SplashScreenDelay" value="5000" />-->
 
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
 
     <icon src="icon.png" />
-    <gap:splash src="www/splash.png" />
+    <!--<gap:splash src="www/splash.png" />-->
 
     <access origin="*"/>
     <plugin name="cordova-plugin-whitelist" version="1"/>

@@ -24,13 +24,32 @@
     <div class="panel panel-left panel-reveal">
         <div class="content-block-title">Settings</div>
         <div class="content-block">
-            
             <!--Setting aantal pokemons laden-->
             <div class="item-inner">
                 <div class="item-title label">Pokemons to load: <span id="itemsPerLoad"></span></div>
                 <div class="item-input">
                     <div class="range-slider">
                         <input ontouchend="saveSettings()" id="pokemonsToLoad" type="range" min="20" max="100" step="5"/>
+                    </div>
+                </div>
+            </div>
+         </div>
+         <div class="content-block">  
+            <div class="item-inner">
+                <div class="item-title label">Latitude:</div>
+                <div class="item-input">
+                    <div class="item-input">
+                        <input onchange="saveSettings()" id="pokemonLat" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-block">
+            <div class="item-inner">
+                <div class="item-title label">Longitude:</div>
+                <div class="item-input">
+                    <div class="item-input">
+                        <input onchange="saveSettings()" id="pokemonLon" type="text">
                     </div>
                 </div>
             </div>
