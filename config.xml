@@ -17,8 +17,8 @@
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
 
-    <icon src="icon.png" />
-    <gap:splash src="splash.png" />
+    <icon src="www/icon.png" />
+    <gap:splash src="www/splash.png" />
 
     <access origin="*"/>
     <plugin name="cordova-plugin-whitelist" version="1"/>
