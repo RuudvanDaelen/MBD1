@@ -46,7 +46,9 @@
           <div class="navbar-inner">
             <!-- We have home navbar without left link-->
             <div class="left">
-                <img src="img/pokedex/pokeball_red_30x30_white.png" />
+                <a href="pokemons.html" class="link color-white">
+                    <img src="img/pokedex/pokeball_red_30x30_white.png" />
+                </a>
             </div>
             <div class="center sliding color-white">Pok&eacute;dex</div>
             <div class="right">
@@ -61,7 +63,7 @@
           <!-- Page, data-page contains page name-->
           <div data-page="index" class="page">
               
-            <form style="background-color: #CB413E;"  class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
+            <!--<form style="background-color: #CB413E;"  class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
                 <div class="searchbar-input">
                     <input type="search" placeholder="Search">
                     <a href="#" class="searchbar-clear"></a>
@@ -69,16 +71,16 @@
                 <a href="#" class="searchbar-cancel" style="color: white;">Cancel</a>
             </form>
                
-            <div class="searchbar-overlay"></div> 
+            <div class="searchbar-overlay"></div>--> 
               
               
             
               
             <!-- Scrollable page content-->
             <div class="page-content infinite-scroll" data-distance="100">
-                <div class="content-block searchbar-not-found">
+                <!--<div class="content-block searchbar-not-found">
                     No results
-                </div>
+                </div>-->
                 <div id="pokemon-list" class="list-block media-list list-block-search searchbar-found">
                     <ul>
                         <!-- In my-app.js wordt dit gevuld -->
@@ -91,9 +93,12 @@
           </div>
         </div>
         <!-- Bottom Toolbar-->
-        <div class="toolbar">
-          <div class="toolbar-inner"><a href="form.html" class="link color-white">My Pok&eacute;mons</a><a href="detail.html" class="link color-white">Link 2</a></div>
-        </div>
+        <!--<div class="toolbar">
+            <div class="toolbar-inner">
+                <a href="pokemons.html" class="link color-white">My Pok&eacute;mons</a>
+                <a href="search.html" class="link color-white">Search</a>
+            </div>
+        </div>-->
       </div>
     </div>
     <!-- Required for the PhoneGap build to run smoothly -->

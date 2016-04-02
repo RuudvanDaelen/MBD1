@@ -7,11 +7,26 @@ var $$ = Dom7;
 //Local Storage ophalen
 var storage = window.localStorage;
 
+if(storage.getItem('myPokemons') != null) {
+    //alert(storage.getItem('myPokemons'));
+    var myPokemons = JSON.parse(storage.getItem('myPokemons'));
+    //alert(myPokemons);
+} else {
+    var myPokemons = [];
+}
+
+
 //Infinite scroll variables
 var loading         = false;
 var lastIndex       = $$('.pokemon-list li').length; //Zal na infinite scroll hoger worden
-var maxItems        = 811; //moet gezet worden met ajaxcall result.count (totaal aantal van pokemons)
-var itemsPerLoad    = storage.getItem('itemsperload'); //$('#pokemonsToLoad').val(); //instellbaar met settings
+var maxItems        = 721; //moet gezet worden met ajaxcall result.count (totaal aantal van pokemons)
+
+if(storage.getItem('itemsperload') != null) {
+    var itemsPerLoad    = storage.getItem('itemsperload'); //$('#pokemonsToLoad').val(); //instellbaar met settings  
+} else {
+    var itemsPerLoad = 20;
+}
+
 
 $('#itemsPerLoad').text(itemsPerLoad);
 $('#pokemonsToLoad').value = itemsPerLoad;
@@ -60,8 +75,6 @@ loadPokemons(itemsPerLoad, 0); //vanaf het begin
 
 
 
-
-
 //ItemsToLoad setten
 function setItemsPerLoad(value) {
     storage.setItem('itemsperload', ""+value); //Local storage goed zetten
@@ -75,6 +88,46 @@ function saveSettings() {
 
 function openExternalLink(url) {
     window.open(url, '_system', 'location=yes');
+}
+
+function catchPokemon(pokemonId, pokemonName) {
+    
+    var imageUrl = "http://pokeapi.co/media/img/" + pokemonId + ".png";
+    var pokemon = { id: pokemonId, name: pokemonName, image: imageUrl };
+    
+    myApp.alert("You caught \"" + pokemon.name + "\"", "");
+    
+    myPokemons.push(pokemon);
+    storage.setItem('myPokemons', JSON.stringify(myPokemons));
+    $('#catchPokemonButton').addClass('disabled');
+    
+}
+
+//Controleer of je de pokemon al hebt
+function hasPokemon(id) {
+    var hasPokemon = false;
+    $.each(myPokemons, function(i, pokemon) {
+        if(pokemon.id == id) {
+            hasPokemon = true;
+        }
+    });
+    return hasPokemon; 
+}
+
+function freePokemon(id) {
+    var newMyPokemons = [];
+    $.each(myPokemons, function(i, pokemon) {
+        
+        if(pokemon.id != id) {
+            newMyPokemons.push(pokemon);
+        } else {
+            myApp.alert("You freed \"" + pokemon.name + "\"", "");
+            //Refresh page of remove li uit de lijst
+        }
+    });
+    myPokemons = newMyPokemons;
+    storage.setItem('myPokemons', JSON.stringify(myPokemons));
+    
 }
 
 //Een pokemon ophalen aan de hand van een ID (sync)
@@ -108,12 +161,12 @@ function getPokemon(id) {
         });
         
         //Thuis
-        //pokemon.latitude = 51.6850521276255;
-        //pokemon.longitude = 5.124607672919635;
+        pokemon.latitude = 51.6850521276255;
+        pokemon.longitude = 5.124607672919635;
         
         //School
-        pokemon.latitude = 51.6884299;
-        pokemon.longitude = 5.2870015;
+        //pokemon.latitude = 51.6884299;
+        //pokemon.longitude = 5.2870015;
     }});
     
     return pokemon;
@@ -143,7 +196,7 @@ function loadPokemons(limit, offset) {
                 return letter.toUpperCase(); 
             });
 
-            var pokemon = { id: pokemonId, name: pokemonName, href: item.url, image: imageUrl }
+            var pokemon = { id: pokemonId, name: pokemonName, href: item.url, image: imageUrl };
 
             var html = "";
             html += "<li>";
@@ -171,10 +224,31 @@ function loadPokemons(limit, offset) {
 $$(document).on('pageBeforeAnimation', function(e) { //Voordat de pagina geladen wordt, zal dit uitgevoerd worden
     var page = e.detail.page;
     
-    
-    if(page.name === 'detail') {
-        myApp.showPreloader();
+    if(page.name === 'pokemons') {
         
+        if(page.fromPage.name === 'index') {
+           $.each(myPokemons, function(i, pokemon) {
+                var html = "";
+                html += "<li>";
+                html += "<div class='item item-content'>";
+                html += "<div class='item-media'>";
+                html += "<img height='88px' width='88px' src='"+ pokemon.image +"' class='lazy lazy-fadein'>";
+                html += "</div>";
+                html += "<div class='item-inner'>";
+                html += "<div class='item-title-row'>";
+                html += "<div class='item-title'><b># "+ pokemon.id + ": " + pokemon.name +"</b></div>";
+                html += "</div>";
+                html += "<div class='item-subtitle'>&nbsp;</div>";
+                html += "<div class='item-text'><a ontouchend='freePokemon("+ pokemon.id +")' href='#' class='button button-fill color-red button-round'>Free</a></div>";
+                html += "</div>";
+                html += "</div>";
+                html += "</li>";
+                
+                $("#mypokemons-list ul").append(html);
+            }); 
+        }
+    } else if(page.name === 'detail') {
+        myApp.showPreloader();
    }
 });
 
@@ -182,12 +256,14 @@ $$(document).on('pageBeforeAnimation', function(e) { //Voordat de pagina geladen
 $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt, zal dit uitgevoerd worden
     var page = e.detail.page;
     
-    
-    if(page.name === 'detail') {
+    if(page.name === 'pokemons') {
+        //alert(myPokemons.length);
+    } else if(page.name === 'detail') {
         selectedPokemonId       = page.query.id; //SelectedPokemonId gelijk zetten aan de meegegeven id
         var selectedPokemon     = getPokemon(selectedPokemonId);
-        
+        navigator.geolocation.getCurrentPosition(onSuccess, onError); //
         setTimeout(function() {
+            
             var distanceToPokemon   = getDistanceFromLatLonInMeters(selectedPokemon.latitude, selectedPokemon.longitude, myPosition.coords.latitude, myPosition.coords.longitude);
             
             //Pokemon info        
@@ -212,7 +288,6 @@ $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt
             htmlPokemonInfo += "<td>";
             selectedPokemon.types.forEach(function(type){
                 htmlPokemonInfo += "<span class='sprite sprite-type_"+ type +"'></span>";
-                //htmlPokemonInfo += "<img width='60' height='20' src='./img/pokedex/type_"+ type +".png' />";
             });
             htmlPokemonInfo += "</td>";
             htmlPokemonInfo += "</tr>";
@@ -224,10 +299,13 @@ $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt
             htmlPokemonExtraFunctions = "";
             htmlPokemonExtraFunctions += "<ul>";
             
-            if(distanceToPokemon <= maxDistanceToPokemon || distanceToPokemon <= (maxDistanceToPokemon + myPosition.coords.accuracy)) {
-                htmlPokemonExtraFunctions += "<li><a href='#' class='list-button item-link color-red'>Catch</a></li>";
+            //Check of je de pokemon al hebt en of je dichtbij bent
+            if(!hasPokemon(selectedPokemon.id)) {
+                if(distanceToPokemon <= maxDistanceToPokemon || distanceToPokemon <= (maxDistanceToPokemon + myPosition.coords.accuracy)) {
+                    htmlPokemonExtraFunctions += "<li><a href='#' id='catchPokemonButton' class='list-button item-link color-red' ontouchend='catchPokemon("+ selectedPokemon.id + ",\"" + selectedPokemon.name +" \");'>Catch</a></li>";
+                }
             } else {
-                htmlPokemonExtraFunctions += "<li><a href='#' class='list-button item-link color-red disabled'>Catch</a></li>";
+                htmlPokemonExtraFunctions += "<li><a href='#' id='catchPokemonButton' class='list-button item-link color-red disabled'>Catch</a></li>";
             }
             
             htmlPokemonExtraFunctions += "<li><a ontouchend=\"openExternalLink('"+ selectedPokemon.externalURL +"')\" href='#' class='list-button item-link'>Open in browser</a></li>";
