@@ -271,7 +271,7 @@ $$(document).on('pageBeforeAnimation', function(e) { //Voordat de pagina geladen
 
 $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt, zal dit uitgevoerd worden
     var page = e.detail.page;
-    
+    alert("pageAfterAnimation");
     if(page.name === 'pokemons') {
         //alert(myPokemons.length);
     } else if(page.name === 'detail') {
