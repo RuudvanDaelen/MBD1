@@ -264,24 +264,25 @@ $$(document).on('pageBeforeAnimation', function(e) { //Voordat de pagina geladen
             }); 
         }
     } else if(page.name === 'detail') {
-        myApp.showPreloader();
+        
    }
 });
 
 
 $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt, zal dit uitgevoerd worden
     var page = e.detail.page;
-    alert("pageAfterAnimation");
-    alert(page.name);
+    //alert("pageAfterAnimation");
+    //alert(page.name);
     if(page.name === 'pokemons') {
         //alert(myPokemons.length);
     } else if(page.name === 'detail') {
+        myApp.showPreloader();
         selectedPokemonId       = page.query.id; //SelectedPokemonId gelijk zetten aan de meegegeven id
         var selectedPokemon     = getPokemon(selectedPokemonId);
-        alert("Voor nieuwe coords ophalen: "+ myPosition.coords.latitude + " | " + myPosition.coords.longitude);
+        //alert("Voor nieuwe coords ophalen: "+ myPosition.coords.latitude + " | " + myPosition.coords.longitude);
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        alert("Na nieuwe coords ophalen: "+ myPosition.coords.latitude + " | " + myPosition.coords.longitude);
-        alert("voor setTimeout (na nieuwe coords)");
+        //alert("Na nieuwe coords ophalen: "+ myPosition.coords.latitude + " | " + myPosition.coords.longitude);
+        //alert("voor setTimeout (na nieuwe coords)");
         setTimeout(function() {
             
             var distanceToPokemon   = getDistanceFromLatLonInMeters(selectedPokemon.latitude, selectedPokemon.longitude, myPosition.coords.latitude, myPosition.coords.longitude);
@@ -375,10 +376,10 @@ $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt
             htmlPokemonExtraInfo += "</ul>";
             $('#pokemonExtraInfo').append(htmlPokemonExtraInfo);
             
-            alert("Hij moet geappend zijn");
+            //alert("Hij moet geappend zijn");
             setTimeout(function() {
                myApp.hidePreloader();
-               alert("Preloader moet weg zijn"); 
+               //alert("Preloader moet weg zijn"); 
             }, 2500);
             
         }, 5000); 
