@@ -11,6 +11,7 @@
     <preference name="SplashScreenDelay" value="5000" />
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
     <icon src="icon.png" />
     <splash src="splash.png" />
     <access origin="*" />
