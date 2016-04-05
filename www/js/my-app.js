@@ -266,30 +266,6 @@ $$(document).on('pageBeforeAnimation', function(e) { //Voordat de pagina geladen
     }
 });
 
-
-function sendEmail() {
-    alert("voor verzenden");
-    cordova.plugins.email.open({
-        to:      'ruudvandaelen@live.nl',
-        subject: 'Greetings',
-        body:    '<h1>Nice greetings from Leipzig</h1>',
-        isHtml:  true
-    });
-    alert("verzonden");
-}
-sendEmail();
-/*startNavigation(pokemonLat, pokemonLon);
-
-function startNavigation(lat, lon) {
-    alert("Van: " + lat + " | " + lon + "\n Naar: " + myPosition.coords.latitude + "," + myPosition.coords.longitude);
-    //launchnavigator.navigate([lat, lon], { start: "51.6884299, 5.2870015" });
-    //launchnavigator.navigate([lat, lon], { start: myPosition.coords.latitude + "," + myPosition.coords.longitude });
-    //launchnavigator.navigate([lat, lon]);
-    alert("na launch"); 
-}*/
-
-
-
 $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt, zal dit uitgevoerd worden
     var page = e.detail.page;
     
@@ -337,13 +313,11 @@ $$(document).on('pageAfterAnimation', function(e) { //Na de pagina geladen wordt
             
             //Check of je de pokemon al hebt en of je dichtbij bent
             if(!hasPokemon(selectedPokemon.id)) {
-                alert("Nieuwe pokemon");
+                
                 if(distanceToPokemon <= maxDistanceToPokemon || distanceToPokemon <= (maxDistanceToPokemon + myPosition.coords.accuracy)) {
-                    alert("in de buurt");
                     htmlPokemonExtraFunctions += "<li><a href='#' id='catchPokemonButton' class='list-button item-link color-red' ontouchend='catchPokemon("+ selectedPokemon.id + ",\"" + selectedPokemon.name +" \");'>Catch</a></li>";
                 } else {
-                    alert("niet in de buurt");
-                    htmlPokemonExtraFunctions += "<li><a href='#' class='list-button item-link color-red' ontouchend='startNavigation("+selectedPokemon.latitude+","+selectedPokemon.longitude+");'>Navigate</a></li>";
+                    //htmlPokemonExtraFunctions += "<li><a href='#' class='list-button item-link color-red' ontouchend='startNavigation("+selectedPokemon.latitude+","+selectedPokemon.longitude+");'>Navigate</a></li>";
                 }
             } else {
                 htmlPokemonExtraFunctions += "<li><a href='#' id='catchPokemonButton' class='list-button item-link color-red disabled'>Catch</a></li>";
