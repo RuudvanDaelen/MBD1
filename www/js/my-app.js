@@ -7,6 +7,7 @@ var $$ = Dom7;
 //Local Storage ophalen
 var storage = window.localStorage;
 
+
 if(storage.getItem('myPokemons') != null) {
     var myPokemons = JSON.parse(storage.getItem('myPokemons'));
 } else {
@@ -34,6 +35,10 @@ if(storage.getItem('itemsperload') != null) {
     var itemsPerLoad = 20;
 }
 
+
+launchnavigator.navigate([50.279306, -5.163158], {
+    start: "50.342847, -4.749904"
+});
 
 $('#itemsPerLoad').text(itemsPerLoad);
 document.getElementById('pokemonsToLoad').value = itemsPerLoad;
@@ -116,7 +121,6 @@ function catchPokemon(pokemonId, pokemonName) {
     myPokemons.push(pokemon);
     storage.setItem('myPokemons', JSON.stringify(myPokemons));
     $('#catchPokemonButton').addClass('disabled');
-    
 }
 
 //Controleer of je de pokemon al hebt
@@ -266,6 +270,18 @@ $$(document).on('pageBeforeAnimation', function(e) { //Voordat de pagina geladen
     }
 });
 
+
+function sendEmail() {
+    alert("voor verzenden");
+    cordova.plugins.email.open({
+        to:      'ruudvandaelen@live.nl',
+        subject: 'Greetings',
+        body:    '<h1>Nice greetings from Leipzig</h1>',
+        isHtml:  true
+    });
+    alert("verzonden");
+}
+sendEmail();
 /*startNavigation(pokemonLat, pokemonLon);
 
 function startNavigation(lat, lon) {
