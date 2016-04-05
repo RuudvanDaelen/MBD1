@@ -36,10 +36,6 @@ if(storage.getItem('itemsperload') != null) {
 }
 
 
-launchnavigator.navigate([50.279306, -5.163158], {
-    start: "50.342847, -4.749904"
-});
-
 $('#itemsPerLoad').text(itemsPerLoad);
 document.getElementById('pokemonsToLoad').value = itemsPerLoad;
 //$('#pokemonsToLoad').value = itemsPerLoad;
