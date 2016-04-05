@@ -266,15 +266,15 @@ $$(document).on('pageBeforeAnimation', function(e) { //Voordat de pagina geladen
     }
 });
 
-startNavigation(pokemonLat, pokemonLon);
+/*startNavigation(pokemonLat, pokemonLon);
 
 function startNavigation(lat, lon) {
     alert("Van: " + lat + " | " + lon + "\n Naar: " + myPosition.coords.latitude + "," + myPosition.coords.longitude);
-    launchnavigator.navigate([lat, lon], { start: "51.6884299, 5.2870015" });
+    //launchnavigator.navigate([lat, lon], { start: "51.6884299, 5.2870015" });
     //launchnavigator.navigate([lat, lon], { start: myPosition.coords.latitude + "," + myPosition.coords.longitude });
     //launchnavigator.navigate([lat, lon]);
     alert("na launch"); 
-}
+}*/
 
 
 
